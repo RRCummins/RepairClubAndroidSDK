@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'maven-publish'
+    id 'org.jetbrains.kotlin.android'  
 }
 
 android {
@@ -8,10 +9,10 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 28  
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.2.1"
     }
 
     buildTypes {
@@ -19,6 +20,37 @@ android {
             minifyEnabled false
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+
+    buildFeatures {
+        compose = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
+    
+    // Core dependencies
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
+    
+    // Compose dependencies
+    implementation 'androidx.activity:activity-compose:1.8.2'
+    implementation platform('androidx.compose:compose-bom:2024.01.00')
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-graphics'
+    implementation 'androidx.compose.material3:material3'
+    
+    // Logging
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
 }
 
 publishing {
@@ -31,8 +63,35 @@ publishing {
             artifact(file("libs/RepairClubSDK-release.aar")) {
                 extension = "aar"
             }
+
+            pom {
+                withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+                    
+                    // Add core dependencies
+                    addDependency(dependenciesNode, 'androidx.core', 'core-ktx', '1.12.0')
+                    addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-runtime-ktx', '2.7.0')
+                    
+                    // Add Compose dependencies
+                    addDependency(dependenciesNode, 'androidx.activity', 'activity-compose', '1.8.2')
+                    addDependency(dependenciesNode, 'androidx.compose.ui', 'ui', '2024.01.00')
+                    addDependency(dependenciesNode, 'androidx.compose.ui', 'ui-graphics', '2024.01.00')
+                    addDependency(dependenciesNode, 'androidx.compose.material3', 'material3', '2024.01.00')
+                    
+                    // Add logging dependency
+                    addDependency(dependenciesNode, 'com.squareup.okhttp3', 'logging-interceptor', '4.12.0')
+                }
+            }
         }
     }
+}
+
+// Helper function to add dependencies to POM
+def addDependency(dependenciesNode, group, artifact, version) {
+    def dependencyNode = dependenciesNode.appendNode('dependency')
+    dependencyNode.appendNode('groupId', group)
+    dependencyNode.appendNode('artifactId', artifact)
+    dependencyNode.appendNode('version', version)
 }
 
 tasks.register("install") {
