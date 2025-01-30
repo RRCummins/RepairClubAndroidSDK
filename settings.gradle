@@ -1,0 +1,2 @@
+rootProject.name = "RepairClubAndroidSDK"
+include(":aarsdk")
