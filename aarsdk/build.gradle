@@ -28,7 +28,7 @@ publishing {
             artifactId = "RepairClubAndroidSDK"
             version = "1.0.0"
 
-            artifact(file("libs/RepairClubSDK.aar")) {
+            artifact(file("libs/RepairClubSDK-release.aar")) {
                 extension = "aar"
             }
         }
