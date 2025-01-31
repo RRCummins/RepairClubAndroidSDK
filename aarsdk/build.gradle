@@ -12,7 +12,7 @@ android {
         minSdk = 28  
         targetSdk = 34
         versionCode = 1
-        versionName = "1.2.15"  // Match this with your git tag
+        versionName = "1.2.16"  // Match with git tag
     }
 
     buildTypes {
@@ -59,13 +59,16 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = "com.github.RRCummins"
                 artifactId = "RepairClubAndroidSDK"
-                version = "1.2.14"  // Match this with your git tag
+                version = "1.2.15"  // Match with versionName and git tag
 
                 artifact(file("libs/RepairClubSDK-release.aar")) {
                     extension = "aar"
                 }
 
                 pom {
+                    name = 'RepairClubAndroidSDK'
+                    description = 'Android SDK for RepairClub'
+                    
                     withXml {
                         def dependenciesNode = asNode().appendNode('dependencies')
                         

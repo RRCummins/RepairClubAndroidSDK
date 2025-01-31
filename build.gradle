@@ -4,15 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // The Android Gradle plugin version (adjust as needed)
         classpath 'com.android.tools.build:gradle:8.1.0'
-    }
-}
-
-// Applies to all modules in this project
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22'  // Add Kotlin plugin
     }
 }
