@@ -12,7 +12,7 @@ android {
         minSdk = 28  
         targetSdk = 34
         versionCode = 1
-        versionName = "1.2.16"  // Match with git tag
+        versionName = "1.2.17"  // Match with git tag
     }
 
     buildTypes {
@@ -37,6 +37,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar'])
+
+    implementation 'com.google.code.gson:gson:2.10.1'
     
     // Core dependencies
     implementation 'androidx.core:core-ktx:1.12.0'
