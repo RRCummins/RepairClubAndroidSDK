@@ -12,7 +12,7 @@ android {
         minSdk = 28  
         targetSdk = 34
         versionCode = 1
-        versionName = "1.2.19"  // Match with git tag
+        versionName = "1.2.20"  // Match with git tag
     }
 
     buildTypes {
@@ -75,19 +75,46 @@ afterEvaluate {
                     withXml {
                         def dependenciesNode = asNode().appendNode('dependencies')
                         
-                        // Add core dependencies
+                        // Core dependencies
                         addDependency(dependenciesNode, 'androidx.core', 'core-ktx', '1.12.0')
                         addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-runtime-ktx', '2.7.0')
                         
-                        // Add Compose dependencies with BOM
+                        // Compose dependencies with BOM
                         addDependency(dependenciesNode, 'androidx.activity', 'activity-compose', '1.8.2')
                         addDependencyWithBom(dependenciesNode, 'androidx.compose', 'compose-bom', '2024.01.00')
                         addDependencyNoBom(dependenciesNode, 'androidx.compose.ui', 'ui')
                         addDependencyNoBom(dependenciesNode, 'androidx.compose.ui', 'ui-graphics')
                         addDependencyNoBom(dependenciesNode, 'androidx.compose.material3', 'material3')
                         
-                        // Add logging dependency
+                        // RxJava dependencies
+                        addDependency(dependenciesNode, 'io.reactivex.rxjava2', 'rxandroid', '2.2.21')
+                        addDependency(dependenciesNode, 'com.jakewharton.rx2', 'replaying-share', '2.2.0')
+                        addDependency(dependenciesNode, 'io.reactivex.rxjava2', 'rxjava', '2.2.21')
+                        
+                        // Kotlin dependencies
+                        addDependencyWithBom(dependenciesNode, 'org.jetbrains.kotlin', 'kotlin-bom', '2.0.10')
+                        addDependency(dependenciesNode, 'org.jetbrains.kotlinx', 'kotlinx-coroutines-core', '1.9.0')
+                        addDependency(dependenciesNode, 'org.jetbrains.kotlinx', 'kotlinx-coroutines-android', '1.9.0')
+                        addDependency(dependenciesNode, 'com.jakewharton.retrofit', 'retrofit2-kotlin-coroutines-adapter', '0.9.2')
+                        
+                        // Lifecycle dependencies
+                        addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-extensions', '2.2.0')
+                        addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-viewmodel-ktx', '2.8.7')
+                        addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-livedata-ktx', '2.8.7')
+                        addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-runtime-ktx', '2.8.7')
+                        addDependency(dependenciesNode, 'androidx.localbroadcastmanager', 'localbroadcastmanager', '1.1.0')
+                        
+                        // Logging dependencies
+                        addDependency(dependenciesNode, 'com.jakewharton.timber', 'timber', '5.0.1')
+                        addDependency(dependenciesNode, 'com.google.code.gson', 'gson', '2.11.0')
                         addDependency(dependenciesNode, 'com.squareup.okhttp3', 'logging-interceptor', '4.12.0')
+                        
+                        // Retrofit dependencies
+                        addDependency(dependenciesNode, 'com.squareup.retrofit2', 'retrofit', '2.11.0')
+                        addDependency(dependenciesNode, 'com.squareup.retrofit2', 'converter-gson', '2.11.0')
+                        
+                        // BLE dependency
+                        addDependency(dependenciesNode, 'com.github.weliem', 'blessed-kotlin', '3.0.5')
                     }
                 }
             }
