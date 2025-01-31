@@ -12,7 +12,7 @@ android {
         minSdk = 28  
         targetSdk = 34
         versionCode = 1
-        versionName = "1.2.20"  // Match with git tag
+        versionName = "1.2.21"  // Match with git tag
     }
 
     buildTypes {
@@ -38,15 +38,29 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar'])
     
-    // Network dependencies - use api instead of implementation
+    // Network dependencies - use api for transitive dependencies
     api 'com.google.code.gson:gson:2.10.1'
     api 'com.squareup.retrofit2:retrofit:2.9.0'
     api 'com.squareup.retrofit2:converter-gson:2.9.0'
     api 'com.squareup.okhttp3:logging-interceptor:4.12.0'
     
+    // RxJava dependencies
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    api 'io.reactivex.rxjava2:rxjava:2.2.21'
+    api 'com.jakewharton.rx2:replaying-share:2.2.0'
+    
+    // Kotlin dependencies
+    api platform('org.jetbrains.kotlin:kotlin-bom:1.9.22')
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3'
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+    api 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+    
     // Core dependencies
     implementation 'androidx.core:core-ktx:1.12.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
+    api 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
+    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0'
+    api 'androidx.lifecycle:lifecycle-livedata-ktx:2.7.0'
+    api 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
     
     // Compose dependencies
     implementation 'androidx.activity:activity-compose:1.8.2'
@@ -54,6 +68,12 @@ dependencies {
     implementation 'androidx.compose.ui:ui'
     implementation 'androidx.compose.ui:ui-graphics'
     implementation 'androidx.compose.material3:material3'
+    
+    // Logging
+    api 'com.jakewharton.timber:timber:5.0.1'
+    
+    // BLE
+    api 'com.github.weliem:blessed-kotlin:3.0.5'
 }
 
 afterEvaluate {
@@ -62,7 +82,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = "com.github.RRCummins"
                 artifactId = "RepairClubAndroidSDK"
-                version = "1.2.15"  // Match with versionName and git tag
+                version = "1.2.20"  // Match with versionName and git tag
 
                 artifact(file("libs/RepairClubSDK-release.aar")) {
                     extension = "aar"
@@ -87,31 +107,30 @@ afterEvaluate {
                         addDependencyNoBom(dependenciesNode, 'androidx.compose.material3', 'material3')
                         
                         // RxJava dependencies
-                        addDependency(dependenciesNode, 'io.reactivex.rxjava2', 'rxandroid', '2.2.21')
-                        addDependency(dependenciesNode, 'com.jakewharton.rx2', 'replaying-share', '2.2.0')
+                        addDependency(dependenciesNode, 'io.reactivex.rxjava2', 'rxandroid', '2.1.1')
                         addDependency(dependenciesNode, 'io.reactivex.rxjava2', 'rxjava', '2.2.21')
+                        addDependency(dependenciesNode, 'com.jakewharton.rx2', 'replaying-share', '2.2.0')
                         
                         // Kotlin dependencies
-                        addDependencyWithBom(dependenciesNode, 'org.jetbrains.kotlin', 'kotlin-bom', '2.0.10')
-                        addDependency(dependenciesNode, 'org.jetbrains.kotlinx', 'kotlinx-coroutines-core', '1.9.0')
-                        addDependency(dependenciesNode, 'org.jetbrains.kotlinx', 'kotlinx-coroutines-android', '1.9.0')
+                        addDependencyWithBom(dependenciesNode, 'org.jetbrains.kotlin', 'kotlin-bom', '1.9.22')
+                        addDependency(dependenciesNode, 'org.jetbrains.kotlinx', 'kotlinx-coroutines-core', '1.7.3')
+                        addDependency(dependenciesNode, 'org.jetbrains.kotlinx', 'kotlinx-coroutines-android', '1.7.3')
                         addDependency(dependenciesNode, 'com.jakewharton.retrofit', 'retrofit2-kotlin-coroutines-adapter', '0.9.2')
                         
                         // Lifecycle dependencies
-                        addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-extensions', '2.2.0')
-                        addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-viewmodel-ktx', '2.8.7')
-                        addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-livedata-ktx', '2.8.7')
-                        addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-runtime-ktx', '2.8.7')
+                        addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-viewmodel-ktx', '2.7.0')
+                        addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-livedata-ktx', '2.7.0')
+                        addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-runtime-ktx', '2.7.0')
                         addDependency(dependenciesNode, 'androidx.localbroadcastmanager', 'localbroadcastmanager', '1.1.0')
                         
                         // Logging dependencies
                         addDependency(dependenciesNode, 'com.jakewharton.timber', 'timber', '5.0.1')
-                        addDependency(dependenciesNode, 'com.google.code.gson', 'gson', '2.11.0')
+                        addDependency(dependenciesNode, 'com.google.code.gson', 'gson', '2.10.1')
                         addDependency(dependenciesNode, 'com.squareup.okhttp3', 'logging-interceptor', '4.12.0')
                         
                         // Retrofit dependencies
-                        addDependency(dependenciesNode, 'com.squareup.retrofit2', 'retrofit', '2.11.0')
-                        addDependency(dependenciesNode, 'com.squareup.retrofit2', 'converter-gson', '2.11.0')
+                        addDependency(dependenciesNode, 'com.squareup.retrofit2', 'retrofit', '2.9.0')
+                        addDependency(dependenciesNode, 'com.squareup.retrofit2', 'converter-gson', '2.9.0')
                         
                         // BLE dependency
                         addDependency(dependenciesNode, 'com.github.weliem', 'blessed-kotlin', '3.0.5')
