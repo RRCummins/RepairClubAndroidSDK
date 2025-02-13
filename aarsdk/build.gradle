@@ -12,7 +12,7 @@ android {
         minSdk = 28  
         targetSdk = 34
         versionCode = 1
-        versionName = "1.3.11"  // Match with git tag
+        versionName = "1.3.12"  // Match with git tag
     }
 
     buildTypes {
@@ -91,13 +91,6 @@ afterEvaluate {
                         // Core dependencies
                         addDependency(dependenciesNode, 'androidx.core', 'core-ktx', '1.12.0')
                         addDependency(dependenciesNode, 'androidx.lifecycle', 'lifecycle-runtime-ktx', '2.7.0')
-                        
-                        // Compose dependencies with BOM
-                        addDependency(dependenciesNode, 'androidx.activity', 'activity-compose', '1.8.2')
-                        addDependencyWithBom(dependenciesNode, 'androidx.compose', 'compose-bom', '2024.01.00')
-                        addDependencyNoBom(dependenciesNode, 'androidx.compose.ui', 'ui')
-                        addDependencyNoBom(dependenciesNode, 'androidx.compose.ui', 'ui-graphics')
-                        addDependencyNoBom(dependenciesNode, 'androidx.compose.material3', 'material3')
                         
                         // RxJava dependencies
                         addDependency(dependenciesNode, 'io.reactivex.rxjava2', 'rxandroid', '2.1.1')
