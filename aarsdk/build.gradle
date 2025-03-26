@@ -12,7 +12,7 @@ android {
         minSdk = 28  
         targetSdk = 34
         versionCode = 1
-        versionName = "1.3.22"  // Match with git tag
+        versionName = "1.3.30"  // Match with git tag
     }
 
     buildTypes {
