@@ -10,6 +10,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.3.70] - 2025-06-11 - Beta
+### Added
+- Added BluetoothState property and callback to SDK
+### Fixed
+- 
+
+## [1.3.60] - 2025-06-11
+### Added
+- Added additional vehicle entry descriptions that better handle empty fields
+### Fixed
+- Fixed a bug with Mode $06
+- Fixed a big with regional decimals
+- Fixed duplicate generic request on some older vehicles
+- Cleaned up session logs
+
 
 ## [1.3.52] - 2025-06-06
 ### Added

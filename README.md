@@ -28,7 +28,7 @@ Add the following entries to your `libs.versions.toml`:
 
 ```toml
 [versions]
-repairclubandroidsdk = "1.3.0"
+repairclubandroidsdk = "1.3.60"
 
 [libraries]
 repairclubandroidsdk = { module = "com.github.RRCummins:RepairClubAndroidSDK", version.ref = "repairclubandroidsdk" }
@@ -49,7 +49,7 @@ Add directly to your app module’s `build.gradle.kts` (or `build.gradle`):
 
 ```kotlin
 dependencies {
-    implementation("com.github.RRCummins:RepairClubAndroidSDK:1.3.0")
+    implementation("com.github.RRCummins:RepairClubAndroidSDK:1.3.60")
     // Other dependencies...
 }
 ```
