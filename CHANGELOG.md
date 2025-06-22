@@ -10,9 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [1.3.70] - 2025-06-11 - Beta
+## [1.3.71] - 2025-06-122 - Beta
 ### Added
 - Added BluetoothState property and callback to SDK
+- Updates Bus Sync to overwrite unused device bus slots
 ### Fixed
 - 
 
