@@ -10,12 +10,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [1.4.00] - 2025-07-03 - Beta
+## [1.4.10] - 2025-07-11 - Beta
+### Added
+- Fixes the clear codes progress bug
+- Adds logging of firmware update progress
+### Fixed
+- 
+
+## [1.4.00] - 2025-07-11
 ### Added
 - Added BluetoothState property and callback to SDK
 - Updates Bus Sync to overwrite unused device bus slots
 - Updates to Mode 06 decoding and logging
 - Updates to vehicle info logging
+- Adds overwriting of unused device bus slots
 ### Fixed
 - 
 
