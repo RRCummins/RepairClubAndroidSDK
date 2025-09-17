@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.4.33] - 2025-09-17
+### Added
+- Improvements to bus sync
+### Fixed
+
+---
+
 ## [1.4.20] - 2025-08-05
 ### Added
 - Adds YMM and VIN to narrative
