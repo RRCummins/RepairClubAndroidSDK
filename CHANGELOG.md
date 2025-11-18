@@ -10,10 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [1.4.60] - 2025-11-11
+## [1.4.61] - 2025-11-18
 ### Added
-- Adds new firmware verison check APIs to the SDK
+- Improvements to firmware update error handling
+- Improvements to firmware update flow
+- Improvements to latest firmware version checking
+- Improved logging
 ### Fixed
+- Fixes a bug in clear codes
 - Fixes a iniital connection issues
 
 ---
