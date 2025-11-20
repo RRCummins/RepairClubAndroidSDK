@@ -12,7 +12,7 @@ android {
         minSdk = 28  
         targetSdk = 34
         versionCode = 1
-        versionName = "1.4.61"  // Match with git tag
+        versionName = "1.4.62"  // Match with git tag
     }
 
     buildTypes {
@@ -69,17 +69,27 @@ dependencies {
     api 'com.github.weliem:blessed-kotlin:3.0.5'
 }
 
+// this creates a "dummy" sources task that bundles only non-sensitive files
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    // Instead of pulling source code, we just put the README in
+    // it contains NO code
+    from(project.rootProject.file("README.md"))
+}
+
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
                 groupId = "com.github.RRCummins"
                 artifactId = "RepairClubAndroidSDK"
-                version = "1.2.20"  // Match with versionName and git tag
+                version = "1.4.62"  // Match with versionName and git tag
 
                 artifact(file("libs/RepairClubSDK-release.aar")) {
                     extension = "aar"
                 }
+
+                artifact androidSourcesJar
 
                 pom {
                     name = 'RepairClubAndroidSDK'
