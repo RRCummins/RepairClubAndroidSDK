@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [1.4.61] - 2025-11-18
+## [1.4.63] - 2025-11-21
 ### Added
 - Improvements to firmware update error handling
 - Improvements to firmware update flow
